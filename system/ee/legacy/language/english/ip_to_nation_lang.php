@@ -48,8 +48,6 @@ $lang = array(
 
 'ip_search' => 'IP Address Search',
 
-'ip_to_nation_module_name' => 'IP to Nation',
-
 'last_update' => 'Last update: ',
 
 'manage_banlist' => 'Manage Your Banned Country List',

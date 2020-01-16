@@ -759,56 +759,6 @@ class EE_Session {
 	}
 
 	/**
-	 * Is the nation banned?
-	 */
-	public function nation_ban_check($show_error = TRUE)
-	{
-		$ip_to_nation = ee('Addon')->get('ip_to_nation');
-
-		if (ee()->config->item('require_ip_for_posting') != 'y' OR ( ! $ip_to_nation OR ! $ip_to_nation->isInstalled()))
-		{
-			return FALSE;
-		}
-
-		// all IPv4 go to IPv6 mapped
-		$addr = ee()->input->ip_address();
-
-		if (strpos($addr, ':') === FALSE && strpos($addr, '.') !== FALSE)
-		{
-			$addr = '::'.$addr;
-		}
-
-		$addr = inet_pton($addr);
-		$addr = ee()->db->escape_str($addr);
-
-		$query = ee()->db
-			->select('country')
-			->where("ip_range_low <= '{$addr}'", '', FALSE)
-			->where("ip_range_high >= '{$addr}'", '', FALSE)
-			->order_by('ip_range_low', 'desc')
-			->limit(1, 0)
-			->get('ip2nation');
-
-		if ($query->num_rows() == 1)
-		{
-			ee()->db->where(array(
-				'code' => $query->row('country'),
-				'banned' => 'y'
-			));
-
-			if (ee()->db->count_all_results('ip2nation_countries'))
-			{
-				if ($show_error == TRUE)
-				{
-					return ee()->output->fatal_error(ee()->config->item('ban_message'), 0);
-				}
-
-				return FALSE;
-			}
-		}
-	}
-
-	/**
 	 * Save password lockout
 	 */
 	function save_password_lockout($username = '')
