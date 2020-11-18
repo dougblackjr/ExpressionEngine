@@ -411,6 +411,8 @@ class CommandUpdate extends Cli {
 			}
 
 			$currentVersionKey--;
+			$this->info('the $next_version is ' . $next_version);
+			$this->info('the $currentVersionKey is ' . $currentVersionKey);
 
 			ee()->config->set_item('app_version', $upgradeMap[$currentVersionKey]);
 			ee()->config

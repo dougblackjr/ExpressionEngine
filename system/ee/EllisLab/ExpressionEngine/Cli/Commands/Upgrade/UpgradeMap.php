@@ -7,6 +7,7 @@ use EllisLab\ExpressionEngine\Library\Filesystem\Filesystem;
 class UpgradeMap
 {
     public static $versionsSupported = [
+        '5.4.0',
         '5.3.2',
         '5.3.1',
         '5.3.0',
