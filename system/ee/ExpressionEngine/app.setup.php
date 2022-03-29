@@ -28,6 +28,7 @@ use ExpressionEngine\Service\EntryListing;
 use ExpressionEngine\Service\Event;
 use ExpressionEngine\Service\File;
 use ExpressionEngine\Service\Filter;
+use ExpressionEngine\Service\Form;
 use ExpressionEngine\Service\Formatter;
 use ExpressionEngine\Service\IpAddress;
 use ExpressionEngine\Service\JumpMenu;
@@ -450,6 +451,10 @@ $setup = [
             );
 
             return $fp;
+        },
+
+        'CP/Form' => function ($ee, $config = []) {     
+            return new Form\Form($config);
         },
 
         'CP/Modal' => function ($ee) {
